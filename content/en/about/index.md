@@ -1,13 +1,15 @@
 ---
-description: 'A few years ago, while visiting or, rather, rummaging about Notre-Dame,
-  the author of this book found, in an obscure nook of one of the towers, the following
-  word, engraved by hand upon the wall: —ANANKE.'
-featured_image: /images/Victor_Hugo-Hunchback.jpg
+description: 'Janet Hernandez: Junior at Harvard, Miami native, lover of politics, legal history, and nice graphs.'
+featured_image: /images/janet-headshot.jpg
 menu:
   main:
-    weight: 1
-title: About
+    weight: 
+title: About Me
 ---
-{{< figure src="/images/Victor_Hugo-Hunchback.jpg" title="Illustration from Victor Hugo et son temps (1881)" >}}
+My name is Janet, and I am a junior at Harvard College studying Government with a specialization in data science.
 
-_The Hunchback of Notre-Dame_ (French: _Notre-Dame de Paris_) is a French Romantic/Gothic novel by Victor Hugo, published in 1831. The original French title refers to Notre Dame Cathedral, on which the story is centered. English translator Frederic Shoberl named the novel The Hunchback of Notre Dame in 1833 because at the time, Gothic novels were more popular than Romance novels in England. The story is set in Paris, France in the Late Middle Ages, during the reign of Louis XI.
+As a Miami native and the daughter of immigrant parents from Cuba and Nicaragua, I have a personal connection to the challenges and opportunities faced by immigrant communities in the city. Through my academic pursuits, I aspire to use data and legal analysis to better understand economic inequality and its effects on social and economic mobility.
+
+This blog serves as a platform to share my research and insights, specifically as a final project for "The Politics of Economic Inequality" seminar at Harvard University. While maintaining a rigorous and scholarly approach, I also recognize the human stories behind the data and aim to provide a nuanced understanding of the various factors influencing immigrant settlement in Miami.
+
+I invite you to explore this website with me and gain a deeper understanding of the complex dynamics of immigrant mobility and settlement patterns in one of America's most diverse cities.

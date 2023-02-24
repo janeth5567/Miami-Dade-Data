@@ -1,0 +1,39 @@
+---
+title: "Project Overview"
+author: "Janet Hernandez"
+date: "2023-02-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(tidyverse)
+library(ggplot2)
+library(readr)
+library(scales)
+library(plotly)
+library(rjson)
+library(jtools)
+library(htmlwidgets)
+library(reactable)
+library(sqldf)
+library(blogdown)
+```
+
+# Data Sources and Methods
+
+```{r, shapefile loading, echo=FALSE}
+#upload and try to get shape files 
+library(sf)
+library(tigris)
+library(tidycensus)
+library(plotly)
+
+miami_tracts <- tracts("FL", "Miami-Dade County", cb = TRUE)
+
+plot_geo(miami_tracts)
+
+
+```
+

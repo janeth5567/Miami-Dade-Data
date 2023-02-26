@@ -44,7 +44,12 @@ map1 <- leaflet(miami_tracts) %>%
     opacity = 1.0, fillOpacity = 0.5,
     highlightOptions = highlightOptions(color = "white", weight = 2,
       bringToFront = TRUE)) %>% addTiles()
-map1
+
+leaflet(miami_tracts) %>%
+  addPolygons(color = "#444", weight = 1, smoothFactor = 0.5,
+    opacity = 1.0, fillOpacity = 0.5,
+    highlightOptions = highlightOptions(color = "white", weight = 2,
+      bringToFront = TRUE)) %>% addTiles()
 
 ```
 

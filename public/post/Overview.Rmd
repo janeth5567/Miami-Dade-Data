@@ -1,0 +1,49 @@
+---
+title: "Project Overview"
+author: "Janet Hernandez"
+date: "2023-02-23"
+output: html_document
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, cache = F)
+library(readr)
+library(tidyverse)
+library(ggplot2)
+library(readr)
+library(scales)
+library(plotly)
+library(rjson)
+library(jtools)
+library(htmlwidgets)
+library(reactable)
+library(sqldf)
+library(blogdown)
+
+```
+
+# Data Sources and Methods
+
+```{r, shapefile loading, include=FALSE, warning=FALSE}
+#upload and try to get shape files 
+library(sf)
+library(tigris)
+library(tidycensus)
+library(plotly)
+library(leaflet)
+
+miami_tracts <- tigris::tracts("FL", "Miami-Dade County", cb = TRUE)
+
+```
+
+```{r, warning=FALSE}
+map1 <- leaflet(miami_tracts) %>%
+  addPolygons(color = "#444", weight = 1, smoothFactor = 0.5,
+    opacity = 1.0, fillOpacity = 0.5,
+    fillColor = ~colorQuantile("YlOrRd", ALAND)(ALAND),
+    highlightOptions = highlightOptions(color = "white", weight = 2,
+      bringToFront = TRUE)) %>% addTiles()
+plot_geo(miami_tracts)
+```
+

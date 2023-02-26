@@ -24,3 +24,8 @@ sitemap:
   recent_posts_number: 1
   site_logo: 'Miami-Dade Blog'
   text_color: ''
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

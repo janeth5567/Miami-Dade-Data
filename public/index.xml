@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Is the American Dream Still Alive? on Home</title>
+    <link>https://gohugo-theme-ananke.pages.dev/</link>
+    <description>Recent content in Is the American Dream Still Alive? on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gohugo-theme-ananke.pages.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Project Overview</title>
+      <link>https://gohugo-theme-ananke.pages.dev/post/overview/</link>
+      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://gohugo-theme-ananke.pages.dev/post/overview/</guid>
+      <description> Data Sources and Methods </description>
+    </item>
+    
+    <item>
+      <title>About Me</title>
+      <link>https://gohugo-theme-ananke.pages.dev/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gohugo-theme-ananke.pages.dev/about/</guid>
+      <description>My name is Janet, and I am a junior at Harvard College studying Government with a specialization in data science.
+As a Miami native and the daughter of immigrant parents from Cuba and Nicaragua, I have a personal connection to the challenges and opportunities faced by immigrant communities in the city. Through my academic pursuits, I aspire to use data and legal analysis to better understand economic inequality and its effects on social and economic mobility.</description>
+    </item>
+    
+  </channel>
+</rss>

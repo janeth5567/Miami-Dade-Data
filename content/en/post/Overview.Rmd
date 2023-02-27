@@ -69,14 +69,14 @@ md_county_tracts <- get_acs(
   select(-moe)
 
 # Define the color palette
-pal <- colorBin("YlOrRd", domain = md_county_tracts$median_income, bins = 10)
+pal <- colorBin("YlOrRd", domain = md_county_tracts$median_income, bins = 15)
 
 # Create the leaflet map
 map_income <- leaflet(md_county_tracts) %>%
   addTiles() %>%
   addPolygons(data = md_county_tracts, 
               fillColor = ~pal(median_income),
-              fillOpacity = 0.8,
+              fillOpacity = 0.4,
               color = "#BDBDC3",
               weight = 1,
               label = ~NAME,
@@ -88,7 +88,7 @@ map_income <- leaflet(md_county_tracts) %>%
               popup = paste("<strong>Median Income:</strong>", md_county_tracts$median_income, "<br>",
                             "<strong>Census Tract Name:</strong>", md_county_tracts$NAME),
               popupOptions = popupOptions(
-                closeButton = FALSE,
+                closeButton = TRUE,
                 closeOnClick = FALSE,
                 autoPan = FALSE,
                 className = "popup-custom"
@@ -98,6 +98,15 @@ map_income <- leaflet(md_county_tracts) %>%
             title = "Median Income", position = "bottomright")
 
 map_income
+
+library(htmlwidgets)
+library(htmltools)
+
+currentWD <- getwd()
+dir.create("/Users/janet/Desktop/Spring 2023/Miami-Dade Project/miami-dade/content/en/post/static/leaflet", showWarnings = FALSE)
+setwd("~/Desktop/Spring 2023/Miami-Dade Project/miami-dade/static/rmarkdown-libs/leaflet")
+saveWidget(map_income, "map_income.html")
+setwd(currentWD)
 
 ```
 
@@ -118,4 +127,18 @@ map_income
 
 #saveWidget(map1, file="map.html")
 ```
+
+```{r, echo=FALSE}
+
+# Plot the choropleth map using ggplot2
+ggplot(md_county_tracts) +
+  geom_sf(aes(fill = median_income), color = "#BDBDC3", size = 0.1) +
+  scale_fill_gradientn(colors = RColorBrewer::brewer.pal(5, "YlOrRd"), name = "Median Income") +
+  theme_void()
+ # scale_fill_gradientn(colors = pal, name = "Median Income") 
+
+map2
+
+```
+
 

@@ -6,8 +6,13 @@ output: html_document
 
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, cache = F)
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+```
+
+# Data Sources and Methods
+
+```{r, shapefile loading, include=FALSE, warning=FALSE}
 library(readr)
 library(tidyverse)
 library(ggplot2)
@@ -24,31 +29,93 @@ library(sf)
 library(tigris)
 library(tidycensus)
 
-```
-
-# Data Sources and Methods
-
-```{r, shapefile loading, include=FALSE, warning=FALSE}
-#upload and try to get shape files 
+#upload and try to get shape files
 
 miami_tracts <- tigris::tracts("FL", "Miami-Dade County", cb = FALSE, year = 2010)
 
 
 ```
 
-```{r leaflet}
-library(htmlwidgets)
-library(htmlwidgets)
+```{r leaflet, echo=FALSE, warning=FALSE, message = FALSE}
+
+library(tidyverse)
+library(tidycensus)
+library(sf)
+library(leaflet)
+
+# Set your API key for tidycensus (get your own key from the Census Bureau):
+census_api_key("014885a29a0591c672ee4372a8932169e4c84b16")
+
+# Get geometry for Miami-Dade County
+md_county <- get_acs(
+  geography = "county", 
+  state = "FL", 
+  county = "Miami-Dade County", 
+  variables = "B01001_001",
+  geometry = TRUE
+) %>% 
+  st_geometry()
+
+# Get geometry and median income data for Miami-Dade County tracts
+md_county_tracts <- get_acs(
+  geography = "tract",
+  state = "FL",
+  county = "Miami-Dade County",
+  variables = c("B19013_001", "B01001_001", "NAME"),
+  geometry = TRUE
+) %>%
+  st_transform(st_crs(md_county)) %>%
+  rename(median_income = estimate) %>%
+  select(-moe)
+
+# Define the color palette
+pal <- colorBin("YlOrRd", domain = md_county_tracts$median_income, bins = 10)
+
+# Create the leaflet map
+map_income <- leaflet(md_county_tracts) %>%
+  addTiles() %>%
+  addPolygons(data = md_county_tracts, 
+              fillColor = ~pal(median_income),
+              fillOpacity = 0.8,
+              color = "#BDBDC3",
+              weight = 1,
+              label = ~NAME,
+              labelOptions = labelOptions(
+                style = list("font-weight" = "normal", padding = "3px 8px"),
+                textsize = "15px",
+                direction = "auto"
+              ),
+              popup = paste("<strong>Median Income:</strong>", md_county_tracts$median_income, "<br>",
+                            "<strong>Census Tract Name:</strong>", md_county_tracts$NAME),
+              popupOptions = popupOptions(
+                closeButton = FALSE,
+                closeOnClick = FALSE,
+                autoPan = FALSE,
+                className = "popup-custom"
+              )
+  ) %>%
+  addLegend(pal = pal, values = ~median_income, 
+            title = "Median Income", position = "bottomright")
+
+map_income
+
+```
 
 
-map1 <- leaflet(miami_tracts) %>%
-  addPolygons(color = "#444", weight = 1, smoothFactor = 0.5,
-    opacity = 1.0, fillOpacity = 0.5,
-    highlightOptions = highlightOptions(color = "white", weight = 2,
-      bringToFront = TRUE)) %>% addTiles(urlTemplate = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
 
-map1
+```{r, include = FALSE}
+#library(htmlwidgets)
+#library(htmlwidgets)
 
-saveWidget(map1, file="map.html")
+
+#map1 <- leaflet(miami_tracts) %>%
+  #addPolygons(color = "#444", weight = 1, smoothFactor = 0.5,
+   # opacity = 1.0, fillOpacity = 0.5,
+  #  highlightOptions = highlightOptions(color = "white", weight = 2,
+ #     bringToFront = TRUE)) %>% addTiles(urlTemplate = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+#
+#map1
+
+#saveWidget(map1, file="map.html")
 ```
 

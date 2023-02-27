@@ -38,19 +38,14 @@ miami_tracts <- tigris::tracts("FL", "Miami-Dade County", cb = FALSE, year = 201
 
 ```
 
-```{r, warning=FALSE}
+```{r leaflet}
 map1 <- leaflet(miami_tracts) %>%
   addPolygons(color = "#444", weight = 1, smoothFactor = 0.5,
     opacity = 1.0, fillOpacity = 0.5,
     highlightOptions = highlightOptions(color = "white", weight = 2,
       bringToFront = TRUE)) %>% addTiles()
 
-leaflet(miami_tracts) %>%
-  addPolygons(color = "#444", weight = 1, smoothFactor = 0.5,
-    opacity = 1.0, fillOpacity = 0.5,
-    highlightOptions = highlightOptions(color = "white", weight = 2,
-      bringToFront = TRUE)) %>% addTiles()
-
+map1
 ```
 
 ```{r}

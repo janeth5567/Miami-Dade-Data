@@ -3,7 +3,6 @@ title: "Project Overview"
 author: "Janet Hernandez"
 date: "2023-02-23"
 output: html_document
-
 ---
 
 ```{r include=FALSE}
@@ -110,8 +109,6 @@ setwd(currentWD)
 
 ```
 
-
-
 ```{r, include = FALSE}
 #library(htmlwidgets)
 #library(htmlwidgets)
@@ -140,5 +137,3 @@ ggplot(md_county_tracts) +
 map2
 
 ```
-
-

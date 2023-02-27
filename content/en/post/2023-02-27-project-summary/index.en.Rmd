@@ -1,11 +1,11 @@
 ---
-title: Project Overview
-author: Janet
+title: Project Summary
+author: Janet Hernandez
 date: '2023-02-27'
 slug: []
 categories: []
 tags: []
-featured_image: ''
+featured_image: '/images/pexels-david-iglesias-13356923.jpg'
 description: ''
 ---
 

@@ -1,8 +1,12 @@
 ---
-title: "Project Overview"
-author: "Janet Hernandez"
-date: "2023-02-23"
-output: html_document
+title: Project Summary
+author: Janet Hernandez
+date: '2023-02-27'
+slug: []
+categories: []
+tags: []
+featured_image: ''
+description: ''
 ---
 
 ```{r include=FALSE}

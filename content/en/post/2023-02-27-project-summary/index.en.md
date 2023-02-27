@@ -1,19 +1,23 @@
 ---
-title: "Project Overview"
-author: "Janet Hernandez"
-date: "2023-02-23"
-output: html_document
+title: Project Summary
+author: Janet Hernandez
+date: '2023-02-27'
+slug: []
+categories: []
+tags: []
+featured_image: '/images/pexels-david-iglesias-13356923.jpg'
+description: ''
 ---
 
-<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
-<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
-<link href="/rmarkdown-libs/leaflet/leaflet.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/leaflet/leaflet.js"></script>
-<link href="/rmarkdown-libs/leafletfix/leafletfix.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/proj4/proj4.min.js"></script>
-<script src="/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js"></script>
-<link href="/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/leaflet-binding/leaflet.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/jquery/jquery.min.js"></script>
+<link href="{{< blogdown/postref >}}index.en_files/leaflet/leaflet.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index.en_files/leaflet/leaflet.js"></script>
+<link href="{{< blogdown/postref >}}index.en_files/leafletfix/leafletfix.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index.en_files/proj4/proj4.min.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/Proj4Leaflet/proj4leaflet.js"></script>
+<link href="{{< blogdown/postref >}}index.en_files/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index.en_files/leaflet-binding/leaflet.js"></script>
 
 # Data Sources and Methods
 

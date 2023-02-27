@@ -6,12 +6,12 @@ output: html_document
 ---
 
 ```{r include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
 # Data Sources and Methods
 
-```{r, shapefile loading, include=FALSE, warning=FALSE}
+```{r, shapefile, include=FALSE, warning=FALSE}
 library(readr)
 library(tidyverse)
 library(ggplot2)
@@ -27,20 +27,11 @@ library(blogdown)
 library(sf)
 library(tigris)
 library(tidycensus)
-
-#upload and try to get shape files
-
-miami_tracts <- tigris::tracts("FL", "Miami-Dade County", cb = FALSE, year = 2010)
-
+library(leaflet)
 
 ```
 
-```{r leaflet, echo=FALSE, warning=FALSE, message = FALSE}
-
-library(tidyverse)
-library(tidycensus)
-library(sf)
-library(leaflet)
+```{r leaflet,include=FALSE}
 
 # Set your API key for tidycensus (get your own key from the Census Bureau):
 census_api_key("014885a29a0591c672ee4372a8932169e4c84b16")
@@ -96,44 +87,9 @@ map_income <- leaflet(md_county_tracts) %>%
   addLegend(pal = pal, values = ~median_income, 
             title = "Median Income", position = "bottomright")
 
+```
+
+```{r plot, echo=FALSE}
 map_income
-
-library(htmlwidgets)
-library(htmltools)
-
-currentWD <- getwd()
-dir.create("/Users/janet/Desktop/Spring 2023/Miami-Dade Project/miami-dade/content/en/post/static/leaflet", showWarnings = FALSE)
-setwd("~/Desktop/Spring 2023/Miami-Dade Project/miami-dade/static/rmarkdown-libs/leaflet")
-saveWidget(map_income, "map_income.html")
-setwd(currentWD)
-
-```
-
-```{r, include = FALSE}
-#library(htmlwidgets)
-#library(htmlwidgets)
-
-
-#map1 <- leaflet(miami_tracts) %>%
-  #addPolygons(color = "#444", weight = 1, smoothFactor = 0.5,
-   # opacity = 1.0, fillOpacity = 0.5,
-  #  highlightOptions = highlightOptions(color = "white", weight = 2,
- #     bringToFront = TRUE)) %>% addTiles(urlTemplate = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
-#
-#map1
-
-#saveWidget(map1, file="map.html")
-```
-
-```{r, echo=FALSE}
-
-# Plot the choropleth map using ggplot2
-ggplot(md_county_tracts) +
-  geom_sf(aes(fill = median_income), color = "#BDBDC3", size = 0.1) +
-  scale_fill_gradientn(colors = RColorBrewer::brewer.pal(5, "YlOrRd"), name = "Median Income") +
-  theme_void()
- # scale_fill_gradientn(colors = pal, name = "Median Income") 
-
-map2
 
 ```

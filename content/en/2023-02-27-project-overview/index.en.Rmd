@@ -1,0 +1,99 @@
+---
+title: Project Overview
+author: Janet
+date: '2023-02-27'
+slug: []
+categories: []
+tags: []
+featured_image: ''
+description: ''
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# Data Sources and Methods
+
+```{r, shapefile, include=FALSE, warning=FALSE}
+library(readr)
+library(tidyverse)
+library(ggplot2)
+library(readr)
+library(scales)
+library(plotly)
+library(rjson)
+library(jtools)
+library(htmlwidgets)
+library(reactable)
+library(sqldf)
+library(blogdown)
+library(sf)
+library(tigris)
+library(tidycensus)
+library(leaflet)
+
+```
+
+```{r leaflet,include=FALSE}
+
+# Set your API key for tidycensus (get your own key from the Census Bureau):
+census_api_key("014885a29a0591c672ee4372a8932169e4c84b16")
+
+# Get geometry for Miami-Dade County
+md_county <- get_acs(
+  geography = "county", 
+  state = "FL", 
+  county = "Miami-Dade County", 
+  variables = "B01001_001",
+  geometry = TRUE
+) %>% 
+  st_geometry()
+
+# Get geometry and median income data for Miami-Dade County tracts
+md_county_tracts <- get_acs(
+  geography = "tract",
+  state = "FL",
+  county = "Miami-Dade County",
+  variables = c("B19013_001", "B01001_001", "NAME"),
+  geometry = TRUE
+) %>%
+  st_transform(st_crs(md_county)) %>%
+  rename(median_income = estimate) %>%
+  select(-moe)
+
+# Define the color palette
+pal <- colorBin("YlOrRd", domain = md_county_tracts$median_income, bins = 15)
+
+# Create the leaflet map
+map_income <- leaflet(md_county_tracts) %>%
+  addTiles() %>%
+  addPolygons(data = md_county_tracts, 
+              fillColor = ~pal(median_income),
+              fillOpacity = 0.4,
+              color = "#BDBDC3",
+              weight = 1,
+              label = ~NAME,
+              labelOptions = labelOptions(
+                style = list("font-weight" = "normal", padding = "3px 8px"),
+                textsize = "15px",
+                direction = "auto"
+              ),
+              popup = paste("<strong>Median Income:</strong>", md_county_tracts$median_income, "<br>",
+                            "<strong>Census Tract Name:</strong>", md_county_tracts$NAME),
+              popupOptions = popupOptions(
+                closeButton = TRUE,
+                closeOnClick = FALSE,
+                autoPan = FALSE,
+                className = "popup-custom"
+              )
+  ) %>%
+  addLegend(pal = pal, values = ~median_income, 
+            title = "Median Income", position = "bottomright")
+
+```
+
+```{r plot, echo=FALSE}
+map_income
+
+```
